@@ -1,0 +1,20 @@
+# Ignore bin and obj folders
+bin/
+obj/
+
+# Ignore user-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Ignore Visual Studio folders
+.vs/
+
+# Ignore npm and NuGet package folders
+node_modules/
+packages/
+
+# Ignore other generated files
+*.log
+*.cache
