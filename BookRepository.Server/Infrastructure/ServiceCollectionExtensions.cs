@@ -1,4 +1,5 @@
 ﻿using BookRepository.Data;
+using ELearningPlatform.Common.DependencyInjectionContracts;
 using Microsoft.EntityFrameworkCore;
 
 namespace BookRepository.Api.Infrastructure
@@ -34,5 +35,48 @@ namespace BookRepository.Api.Infrastructure
                    .AllowAnyOrigin()
                    .AllowAnyMethod()
                    .AllowAnyHeader());
+
+        public static IServiceCollection AddApplicationServices(
+         this IServiceCollection services)
+        {
+            var serviceInterfaceType = typeof(IService);
+            var scopedInterfaceType = typeof(IScopedService);
+            var singletonInterfaceType = typeof(ISingletonService);
+
+            var typesToRegister = AppDomain.CurrentDomain.GetAssemblies()
+                .SelectMany(a => a.GetExportedTypes()
+                .Where(t => t.IsClass && !t.IsAbstract)
+                .Where(t =>
+                  serviceInterfaceType.IsAssignableFrom(t) ||
+                  scopedInterfaceType.IsAssignableFrom(t) ||
+                  singletonInterfaceType.IsAssignableFrom(t)
+                 )
+                .Select(t => new
+                {
+                    Service = t.GetInterface($"I{t.Name}"),
+                    Implementation = t
+                }));
+
+            foreach (var type in typesToRegister)
+            {
+                if (type.Service is null) continue;
+
+                if (serviceInterfaceType.IsAssignableFrom(type.Service))
+                {
+                    services.AddTransient(type.Service, type.Implementation);
+                }
+                else if (scopedInterfaceType.IsAssignableFrom(type.Service))
+                {
+                    services.AddScoped(type.Service, type.Implementation);
+                }
+                else if (singletonInterfaceType.IsAssignableFrom(type.Service))
+                {
+                    services.AddSingleton(type.Service, type.Implementation);
+                }
+
+            }
+
+            return services;
+        }
     }
 }

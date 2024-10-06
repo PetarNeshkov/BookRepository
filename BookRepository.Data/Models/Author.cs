@@ -9,10 +9,10 @@ namespace BookRepository.Data.Models
     {
         [Required]
         [MaxLength(NameMaxLength)]
-        public string Name { get; set; }
+        public required string Name { get; set; }
 
         [Required]
         [StringLength(BioMaxLength, MinimumLength = BioMinLength)]
-        public string Bio { get; set; }
+        public required string Bio { get; set; }
     }
 }

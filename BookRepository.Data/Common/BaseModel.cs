@@ -8,10 +8,10 @@ namespace BookRepository.Data.Common
 
         [Key]
         [MaxLength(40)]
-        public required T Id { get; set; }
+        public T Id { get; set; }
 
-        public DateTime CreatedOn  { get; set; }
+        public DateTime CreatedOn { get; set; }
 
-        public DateTime ModifiedOn  { get; set; }
+        public DateTime ModifiedOn { get; set; }
     }
 }
