@@ -11,6 +11,11 @@
             public const int DescriptionMaxLength = 500;
         }
 
+        public static class  BookChange 
+        {
+            public const int ChangeDesriptionMaxLength = 80;
+        }
+
         public static class Author
         {
             public const int NameMaxLength = 100;
