@@ -10,5 +10,5 @@ const BOOK_HISTORY_CONTROLLER_ROUTE = baseApiUrl + '/Booksistories/';
 
 export const AUTHOR_URLS = {
   CREATE_AUTHOR: `${ AUTHOR_CONTROLLER_ROUTE }` + 'CreateAuthor',
-
+  ALL_AUTHORS: `${ AUTHOR_CONTROLLER_ROUTE }` + baseGetAll,
 };

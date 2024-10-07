@@ -2,7 +2,10 @@
 {
     public static class GlobalConstants
     {
+        public const int ItemsPerPage = 15;
         public const string SuccessfulCreationMessage = "The {0} was successfully created.";
+        public const string ModelsRegexPatternTemplate = @"^{0}\..+Models,";
+
         public static class ErrorMessages
         {
             public const string IdModelIdValidationMessage = "The provided id for the entity is invalid.";

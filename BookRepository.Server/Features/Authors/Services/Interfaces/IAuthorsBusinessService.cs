@@ -5,6 +5,8 @@ namespace BookRepository.Api.Features.Authors.Services.Interfaces
 {
     public interface IAuthorsBusinessService : IService
     {
-        Task CreateNewAuthor(CreateAuthorRequestModel model);
+        Task<AuthorResponseModel> GetAllAuthorsByPage(int page);
+
+        Task<string> CreateNewAuthor(CreateAuthorRequestModel model);
     }
 }

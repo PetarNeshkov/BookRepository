@@ -24,6 +24,8 @@ namespace BookRepository.Services.Common.DataServices.Interfaces
 
         Task<TEntity?> OneById(object id);
 
+        Task<int> Count(Expression<Func<TEntity, bool>>? filter = null);
+
         Task<bool> Exists(Expression<Func<TEntity, bool>>? filter = null);
 
         Task<bool> ExistsById(object id);

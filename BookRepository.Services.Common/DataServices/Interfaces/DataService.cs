@@ -77,5 +77,9 @@ namespace BookRepository.Services.Common
         public async Task<bool> ExistsById(object id)
         => await GetByIdQuery(id)
             .AnyAsync();
+
+        public async Task<int> Count(Expression<Func<TEntity, bool>>? filter = null)
+            => await GetQuery(filter)
+            .CountAsync();
     }
 }

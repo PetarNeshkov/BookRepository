@@ -1,9 +1,10 @@
 using BookRepository.Api.Features.Authors.Models;
 using BookRepository.Api.Features.Authors.Services.Interfaces;
 using BookRepository.Api.Features.Authors.Validators;
+using BookRepository.Api.Infrastructure.Extensions;
 using FluentValidation.TestHelper;
 using Microsoft.AspNetCore.Mvc;
-using static BookRepository.Services.Common.GlobalConstants;
+using static Microsoft.AspNetCore.Http.StatusCodes;
 
 namespace BookRepository.Api.Features.Authors
 {
@@ -22,11 +23,15 @@ namespace BookRepository.Api.Features.Authors
                 return UnprocessableEntity(validationResult.Errors);
             }
 
-            await authorsBusinessService.CreateNewAuthor(model);
-
-            return Ok(string.Format(SuccessfulCreationMessage, model.Name));
-
+            return await authorsBusinessService.CreateNewAuthor(model)
+                        .ToOkResult();
         }
 
+        [HttpGet]
+        [ProducesResponseType(typeof(AuthorResponseModel), Status200OK)]
+        public async Task<IActionResult> GetAll(int page = 1)
+            => await authorsBusinessService
+                .GetAllAuthorsByPage(page)
+                .ToOkResult();
     }
 }
