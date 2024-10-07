@@ -20,6 +20,7 @@
                 public const string AuthorBioIsRequredMessage = "Author bio is required.";
                 public const string AuthorBioMinLengthMessage = "Author bio must be at least {0} characters.";
                 public const string AuthorBioMaxLengthMessage = "Author bio cannot exceed 1000 characters.";
+                public const string AuthorNotFoundMessage = "Author not found.";
             }
         }
     }

@@ -7,6 +7,11 @@ namespace BookRepository.Api.Features.Authors.Services.Interfaces
     {
         Task<AuthorResponseModel> GetAllAuthorsByPage(int page);
 
+        Task<IEnumerable<AuthorNameModel>> GetAllAuthorsNames();
+
+        Task<AuthorDataModel?> GetAuthorData(int authorId);
+
         Task<string> CreateNewAuthor(CreateAuthorRequestModel model);
+
     }
 }

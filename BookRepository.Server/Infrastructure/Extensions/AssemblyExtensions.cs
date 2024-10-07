@@ -44,11 +44,6 @@ namespace BookRepository.Api.Infrastructure.Extensions
                 .Where(x => regexes.Any(r => x.FullName != null && r.IsMatch(x.FullName)));
         }
 
-        /// <summary>
-        /// Gets the common convention prefix used in all assemblies from the solution.
-        /// For example the prefix in the assembly "Interactive.Servers.Courses.Controllers" is "Interactive".
-        /// </summary>
-        /// <param name="assembly">The assembly of which to get the prefix.</param>
         public static string GetPrefix(this Assembly assembly)
             => assembly.GetName()?.Name?.Split(".").FirstOrDefault()
                ?? throw new ArgumentException("Cannot get assembly prefix.", nameof(assembly));

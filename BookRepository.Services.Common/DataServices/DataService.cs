@@ -5,7 +5,7 @@ using BookRepository.Services.Common.DataServices.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
-namespace BookRepository.Services.Common
+namespace BookRepository.Services.Common.DataServices
 {
     public class DataService<TEntity>(BookRepositoryDbContext db) : IDataService<TEntity>
         where TEntity : class

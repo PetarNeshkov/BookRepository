@@ -5,6 +5,9 @@ namespace BookRepository.Api.Infrastructure.Extensions
 {
     public static class MappingExtensions
     {
+        public static TDestination Map<TDestination>(this object item)
+            => AutoMapperSingleton.Instance.Mapper.Map<TDestination>(item);
+
         public static IQueryable<TDestination> MapCollection<TDestination>(
         this IQueryable queryable,
         object parameters = null!)

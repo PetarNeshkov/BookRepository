@@ -1,7 +1,7 @@
 ﻿using BookRepository.Api.Features.Authors.Models;
 using BookRepository.Api.Features.Authors.Services.Interfaces;
+using BookRepository.Api.Infrastructure.Extensions;
 using BookRepository.Data.Models;
-
 using static BookRepository.Services.Common.GlobalConstants;
 
 namespace BookRepository.Api.Features.Authors.Services
@@ -22,6 +22,21 @@ namespace BookRepository.Api.Features.Authors.Services
                 Authors = authorsPerPage,
                 AuthorsTotalCount = authorsTotalCount,
             };
+        }
+
+        public async Task<IEnumerable<AuthorNameModel>> GetAllAuthorsNames()
+            => await authorsDataService.GetAllAuthorsNames();
+
+        public async Task<AuthorDataModel?> GetAuthorData(int authorId)
+        {
+            var authorEntity = await authorsDataService.OneById(authorId);
+
+            if (authorEntity is null)
+            {
+                return null;
+            }
+
+            return authorEntity.Map<AuthorDataModel>();
         }
 
         public async Task<string> CreateNewAuthor(CreateAuthorRequestModel model)
