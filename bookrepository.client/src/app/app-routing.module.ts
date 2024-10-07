@@ -14,12 +14,14 @@ const routes : Routes = [
     path: 'authors', children: [
       {path: 'list', component: ListAuthorsComponent},
       {path: 'manage', component: ManageAuthorComponent},
+      {path: 'manage/:id', component: ManageAuthorComponent},
     ]
   },
   {
     path: 'books', children: [
       {path: 'list', component: ListBooksComponent}, 
       {path: 'manage', component: ManageBookComponent},
+      {path: 'manage/:id', component: ManageBookComponent},
     ]
   },
   {path: 'book-history', component: BookHistoryComponent},

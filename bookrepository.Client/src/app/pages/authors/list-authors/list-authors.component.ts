@@ -33,8 +33,10 @@ export class ListAuthorsComponent implements OnInit
     this.loadAuthors();
   }
 
-  loadAuthors(): void {
-    this.authorsService.getAuthors(this.currentPage).subscribe((response: IAuthorsModel) => {
+  loadAuthors () : void
+  {
+    this.authorsService.getAuthorsByPage(this.currentPage).subscribe((response : IAuthorsModel) =>
+    {
       this.authors = response.authors;
       this.totalAuthorsCount = response.authorsTotalCount;
     });
@@ -49,6 +51,6 @@ export class ListAuthorsComponent implements OnInit
 
   editAuthor (authorId : number) : void
   {
-    this.router.navigate(['/edit-author', authorId]);
+    this.router.navigate(['authors/manage', authorId]);
   }
 }
