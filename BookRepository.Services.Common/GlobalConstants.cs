@@ -4,6 +4,7 @@
     {
         public const int ItemsPerPage = 5;
         public const string SuccessfulCreationMessage = "The {0} was successfully created.";
+        public const string SuccessfulEditMessage = "The {0} was successfully edited.";
         public const string ModelsRegexPatternTemplate = @"^{0}\..+Models,";
 
         public static class ErrorMessages

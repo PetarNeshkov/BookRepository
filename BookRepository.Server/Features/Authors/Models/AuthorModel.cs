@@ -1,5 +1,4 @@
-﻿
-using BookRepository.Api.Infrastructure.AutoMapper;
+﻿using BookRepository.Api.Infrastructure.AutoMapper;
 using BookRepository.Data.Models;
 
 namespace BookRepository.Api.Features.Authors.Models

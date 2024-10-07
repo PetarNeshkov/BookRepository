@@ -55,5 +55,19 @@ namespace BookRepository.Api.Features.Authors.Services
             return string.Format(SuccessfulCreationMessage, model.Name);
         }
 
+        public async Task<string> UpdateAuthor(EditAuthorModel model)
+        {
+            var author = await authorsDataService.OneById(model.Id);
+
+            author!.Name = model.Name;
+            author!.Bio = model.Bio;
+
+            authorsDataService.Update(author);
+
+            await authorsDataService.SaveChanges();
+
+            return string.Format(SuccessfulEditMessage, model.Name);
+
+        }
     }
 }

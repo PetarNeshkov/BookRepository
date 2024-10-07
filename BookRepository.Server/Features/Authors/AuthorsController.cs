@@ -5,21 +5,22 @@ using BookRepository.Api.Infrastructure.Extensions;
 using BookRepository.Services.Common.Enumerations;
 using FluentValidation.TestHelper;
 using Microsoft.AspNetCore.Mvc;
-using static Microsoft.AspNetCore.Http.StatusCodes;
 using static BookRepository.Services.Common.GlobalConstants.ErrorMessages.Authors;
+using static Microsoft.AspNetCore.Http.StatusCodes;
 
 namespace BookRepository.Api.Features.Authors
 {
     public class AuthorsController(
         IAuthorsBusinessService authorsBusinessService,
-        AuthorsValidator validator)
+        CreateAuthorValidator createValidator,
+        EditAuthorValidator editValidator)
         : BaseApiController
     {
         [HttpPost]
         public async Task<IActionResult> CreateAuthor(CreateAuthorRequestModel model)
         {
             model.OperationType = CrudOperationType.Create;
-            var validationResult = await validator.TestValidateAsync(model);
+            var validationResult = await createValidator.TestValidateAsync(model);
 
             if (!validationResult.IsValid)
             {
@@ -28,6 +29,21 @@ namespace BookRepository.Api.Features.Authors
 
             return await authorsBusinessService.CreateNewAuthor(model)
                         .ToOkResult();
+        }
+
+        [HttpPatch]
+        public async Task<IActionResult> UpdateAuthor(EditAuthorModel model)
+        {
+            model.OperationType = CrudOperationType.Update;
+            var validationResult = await editValidator.TestValidateAsync(model);
+
+            if (!validationResult.IsValid)
+            {
+                return UnprocessableEntity(validationResult.Errors);
+            }
+
+            return await authorsBusinessService.UpdateAuthor(model)
+                .ToOkResult();
         }
 
         [HttpGet]

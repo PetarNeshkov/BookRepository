@@ -6,11 +6,9 @@ using static BookRepository.Services.Common.GlobalConstants.ErrorMessages.Author
 
 namespace BookRepository.Api.Features.Authors.Validators
 {
-    public class AuthorsValidator : BaseModelValidator<CreateAuthorRequestModel, int>
+    public class CreateAuthorValidator : BaseModelValidator<CreateAuthorRequestModel, int>
     {
-        private readonly IAuthorsDataService authorsDataService;
-
-        public AuthorsValidator(IAuthorsDataService authorsDataService)
+        public CreateAuthorValidator(IAuthorsDataService authorsDataService)
         {
 
             RuleFor(author => author.Name)

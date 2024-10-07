@@ -6,7 +6,7 @@ export interface IAuthorUrlParams
 
 export interface IAuthor
 {
-  id : number;
+  id? : number;
   name : string;
   bio : string;
 }
@@ -26,3 +26,8 @@ export interface IAuthorsNamesModel
 {
   authors : IAuthorName[];
 }
+
+export interface IEditAuthorUrlParams extends IAuthor {
+  originalName? : string;
+  originalBio? : string;
+};

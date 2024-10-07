@@ -13,5 +13,7 @@ namespace BookRepository.Api.Features.Authors.Services.Interfaces
 
         Task<string> CreateNewAuthor(CreateAuthorRequestModel model);
 
+        Task<string> UpdateAuthor(EditAuthorModel model);
+
     }
 }

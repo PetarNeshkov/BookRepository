@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AuthorsService} from '../../../services/authors.service';
-import {IAuthor, IAuthorUrlParams} from '../../../models/Authors';
+import {IAuthor, IAuthorUrlParams, IEditAuthorUrlParams} from '../../../models/Authors';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ValidationError} from '../../../models/ValidationError';
 
@@ -45,17 +45,21 @@ export class ManageAuthorComponent implements OnInit
     this.authorForm = this.fb.group({
       name: ['', [Validators.required]],
       bio: ['', [Validators.required]],
+      originalName: [''],
+      originalBio: ['']
     });
   }
 
   loadAuthorData (id : number) : void
   {
-    this.authorsService.loadAuthorData(this.authorId as number).subscribe({
+    this.authorsService.loadAuthorData(id).subscribe({
       next: (response) =>
       {
         this.authorForm.patchValue({
           name: response.name,
           bio: response.bio,
+          originalName: response.name,
+          originalBio: response.bio
         });
       },
       error: (errors : ValidationError[]) =>
@@ -85,21 +89,25 @@ export class ManageAuthorComponent implements OnInit
 
   }
 
-  private getAuthorFormData () : IAuthorUrlParams
+  private getAuthorFormData () : IEditAuthorUrlParams
   {
     return {
       name: this.f['name'].value,
       bio: this.f['bio'].value,
+      originalName: this.f['originalName'].value,
+      originalBio: this.f['originalBio'].value
     };
   }
 
-  private submitAuthorData (authorData : IAuthorUrlParams) : void
+  private submitAuthorData (authorData : IEditAuthorUrlParams) : void
   {
     if (this.authorId) {
-      const request : IAuthor = {
+      const request : IEditAuthorUrlParams = {
         id: this.authorId,
         name: authorData.name,
-        bio: authorData.bio
+        bio: authorData.bio,
+        originalName: authorData.originalName,
+        originalBio: authorData.originalBio,
       };
 
       this.authorsService.updateAuthor(request).subscribe({

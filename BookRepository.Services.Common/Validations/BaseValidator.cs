@@ -7,10 +7,14 @@ using static BookRepository.Services.Common.GlobalConstants.ErrorMessages;
 namespace BookRepository.Services.Common.Validations
 {
     public abstract class BaseModelValidator<TModel, TId> : AbstractValidator<TModel>
-    where TModel : BaseModel<TId>
+        where TModel : BaseModel<TId>
     {
-        protected void AddIdValidation(IDataService<TModel> dataService)
+        protected void AddIdValidation<TEntity>(IDataService<TEntity> dataService)
+            where TEntity : class
         {
+            RuleLevelCascadeMode = CascadeMode.Stop;
+            ClassLevelCascadeMode = CascadeMode.Stop;
+
             if (typeof(TId) == typeof(int) || typeof(TId) == typeof(int?))
             {
                 RuleFor(model => model.Id as int?)
