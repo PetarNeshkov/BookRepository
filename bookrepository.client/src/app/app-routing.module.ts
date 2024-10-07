@@ -3,9 +3,9 @@ import {RouterModule, Routes} from '@angular/router';
 import {ListBooksComponent} from './pages/books/list-books/list-books.component';
 import {ManageBookComponent} from './pages/books/manage-book/manage-book.component';
 import {ListAuthorsComponent} from './pages/authors/list-authors/list-authors.component';
-import {ManageAuthorComponent} from './pages/authors/manage-author/manage-author.component';
 import {BookHistoryComponent} from './pages/book-history/book-history.component';
 import {NotFoundComponent} from './pages/not-found/not-found.component';
+import { ManageAuthorComponent } from './pages/authors/manage-author/manage-author.component';
 
 const routes : Routes = [
   {path: '', redirectTo: 'books/list', pathMatch: 'full'}, 

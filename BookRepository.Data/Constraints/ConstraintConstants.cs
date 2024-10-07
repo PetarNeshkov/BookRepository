@@ -2,6 +2,7 @@
 {
     public static class ConstraintConstants
     {
+        public const int KeyMaxLength = 40;
         public static class Book
         {
             public const int TitleMaxLength = 30;
@@ -11,7 +12,7 @@
             public const int DescriptionMaxLength = 500;
         }
 
-        public static class  BookChange 
+        public static class BookChange
         {
             public const int ChangeDesriptionMaxLength = 80;
         }
