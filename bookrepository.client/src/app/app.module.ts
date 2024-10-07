@@ -14,6 +14,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthorsService } from './services/authors.service';
 
@@ -35,8 +37,11 @@ import { AuthorsService } from './services/authors.service';
     MatToolbarModule,
     MatMenuModule,
     MatButtonModule,
+    MatTableModule,      
+    MatPaginatorModule,
+    MatButtonModule,   
     MatIconModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [AuthorsService],
   bootstrap: [AppComponent]

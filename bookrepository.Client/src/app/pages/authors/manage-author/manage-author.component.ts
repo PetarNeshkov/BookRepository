@@ -56,8 +56,8 @@ export class ManageAuthorComponent implements OnInit
     this.authorsService.createAuthor(this.authorForm.value).subscribe({
       next: (response) =>
       {
-        this.router.navigate(['/authors-listing'], {
-          queryParams: {successMessage: `The ${ response } was successfully created.`}
+        this.router.navigate(['/authors/list'], {
+          state: {successMessage: response}
         });
       },
       error: (errors : ValidationError[]) =>

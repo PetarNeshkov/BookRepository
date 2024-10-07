@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
 import * as RouteConstants from '../constants/route.constants';
 import {ApiService} from './api.service';
-import {IAuthorUrlParams} from '../models/Authors';
+import {IAuthorsModel, IAuthorUrlParams} from '../models/Authors';
 import {catchError, Observable, throwError} from 'rxjs';
-import { HttpErrorResponse } from '@angular/common/http';
+import {HttpErrorResponse, HttpParams} from '@angular/common/http';
 
 
 @Injectable({
@@ -23,5 +23,14 @@ export class AuthorsService
         return throwError(() => error);
       })
     );
+  }
+
+  getAuthors (page : number = 1) : Observable<IAuthorsModel>
+  {
+    let params = new HttpParams().set('page', page.toString());
+
+    return this.api
+      .get(this.routeConstants.ALL_AUTHORS,
+        params);
   }
 }

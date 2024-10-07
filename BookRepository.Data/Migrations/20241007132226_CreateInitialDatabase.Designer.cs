@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookRepository.Data.Migrations
 {
     [DbContext(typeof(BookRepositoryDbContext))]
-    [Migration("20241006135529_CreateInitialDatabase")]
+    [Migration("20241007132226_CreateInitialDatabase")]
     partial class CreateInitialDatabase
     {
         /// <inheritdoc />
@@ -42,7 +42,7 @@ namespace BookRepository.Data.Migrations
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("ModifiedOn")
+                    b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
@@ -76,7 +76,7 @@ namespace BookRepository.Data.Migrations
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
-                    b.Property<DateTime>("ModifiedOn")
+                    b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime>("PublishDate")

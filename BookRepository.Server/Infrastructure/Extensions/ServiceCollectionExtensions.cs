@@ -21,12 +21,9 @@ namespace BookRepository.Api.Infrastructure.Extensions
 
         public static IApplicationBuilder MigrateDatabase(this IApplicationBuilder app, IConfiguration configuration)
         {
-            var timeout = configuration.GetValue("MigrationsDbTimeoutInSeconds", 60);
-
             using var scope = app.ApplicationServices.CreateScope();
             using var dbContext = scope.ServiceProvider.GetRequiredService<BookRepositoryDbContext>();
 
-            dbContext.Database.SetCommandTimeout(TimeSpan.FromSeconds(timeout));
             dbContext.Database.Migrate();
 
             return app;

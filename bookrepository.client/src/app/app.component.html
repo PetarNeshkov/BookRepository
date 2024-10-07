@@ -2,20 +2,20 @@
   <div class="navbar-container">
     <span class="app-title">Book Repository</span>
     <div class="nav-links">
-      <button mat-button [matMenuTriggerFor]="authorsMenu">
-        Authors <mat-icon>arrow_drop_down</mat-icon>
-      </button>
       <mat-menu #authorsMenu="matMenu">
         <button mat-menu-item routerLink="/authors/manage">Create Author</button>
         <button mat-menu-item routerLink="/authors/list">List Authors</button>
       </mat-menu>
-      <button mat-button [matMenuTriggerFor]="booksMenu">
-        Books <mat-icon>arrow_drop_down</mat-icon>
+      <button mat-button [matMenuTriggerFor]="authorsMenu">
+        Authors <mat-icon>arrow_drop_down</mat-icon>
       </button>
       <mat-menu #booksMenu="matMenu">
         <button mat-menu-item routerLink="/books/manage">Create Book</button>
         <button mat-menu-item routerLink="/books/list">List Books</button>
       </mat-menu>
+      <button mat-button [matMenuTriggerFor]="booksMenu">
+        Books <mat-icon>arrow_drop_down</mat-icon>
+      </button>
       <button mat-button routerLink="/book-history">
         Book History
       </button>

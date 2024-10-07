@@ -20,10 +20,10 @@ export class ApiService
       .pipe(catchError(this.formatErrors));
   }
 
-  put (path : string, body : Object = {}) : Observable<any>
+  patch (path : string, body : Object = {}) : Observable<any>
   {
     return this.http
-      .put(`${ path }`, body)
+      .patch(`${ path }`, body)
       .pipe(catchError(this.formatErrors));
   }
 

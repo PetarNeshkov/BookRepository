@@ -2,7 +2,7 @@
 {
     public static class GlobalConstants
     {
-        public const int ItemsPerPage = 15;
+        public const int ItemsPerPage = 5;
         public const string SuccessfulCreationMessage = "The {0} was successfully created.";
         public const string ModelsRegexPatternTemplate = @"^{0}\..+Models,";
 
