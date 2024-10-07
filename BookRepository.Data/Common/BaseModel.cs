@@ -4,7 +4,7 @@ using static BookRepository.Data.Constraints.ConstraintConstants;
 
 namespace BookRepository.Data.Common
 {
-    public abstract class BaseModel<TId> : IAuditInfo<TId>
+    public abstract class BaseModel<TId> : IAuditInfo
     {
 
         [Key]

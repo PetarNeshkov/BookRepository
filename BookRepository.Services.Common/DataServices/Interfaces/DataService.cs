@@ -1,7 +1,7 @@
 ﻿using BookRepository.Common.Utils;
 using BookRepository.Data;
 using BookRepository.Data.Common;
-using BookRepository.Services.Common.Interfaces;
+using BookRepository.Services.Common.DataServices.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
@@ -73,5 +73,9 @@ namespace BookRepository.Services.Common
         public async Task<TEntity?> OneById(object id)
             => await GetByIdQuery(id)
             .FirstOrDefaultAsync();
+
+        public async Task<bool> ExistsById(object id)
+        => await GetByIdQuery(id)
+            .AnyAsync();
     }
 }

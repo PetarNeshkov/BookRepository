@@ -1,5 +1,5 @@
 ﻿using BookRepository.Data.Models;
-using BookRepository.Services.Common.Interfaces;
+using BookRepository.Services.Common.DataServices.Interfaces;
 using ELearningPlatform.Common.DependencyInjectionContracts;
 
 namespace BookRepository.Api.Features.Authors.Services.Interfaces

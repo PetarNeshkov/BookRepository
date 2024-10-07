@@ -9,11 +9,6 @@ namespace BookRepository.Api.Features.Authors.Services
     {
         public async Task CreateNewAuthor(CreateAuthorRequestModel model)
         {
-            var existsByName = await authorsDataService.IsExistingByName(model.Name);
-
-            if (existsByName)
-            {
-            }
 
             var author = new Author
             {

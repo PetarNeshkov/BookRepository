@@ -1,6 +1,6 @@
 ﻿using System.Linq.Expressions;
 
-namespace BookRepository.Services.Common.Interfaces
+namespace BookRepository.Services.Common.DataServices.Interfaces
 {
     public interface IDataService<TEntity>
         where TEntity : class
@@ -25,5 +25,7 @@ namespace BookRepository.Services.Common.Interfaces
         Task<TEntity?> OneById(object id);
 
         Task<bool> Exists(Expression<Func<TEntity, bool>>? filter = null);
+
+        Task<bool> ExistsById(object id);
     }
 }

@@ -6,6 +6,7 @@ builder.Services
     .AddDatabase(builder.Configuration)
     .AddEndpointsApiExplorer()
     .AddApplicationServices()
+    .AddValidators()
     .AddSwaggerGen()
     .AddControllers();
 
@@ -21,9 +22,10 @@ app
     .MigrateDatabase(builder.Configuration)
     .UseHttpsRedirection()
     .UseAnyCors()
+    .UseRouting()
     .UseAuthorization();
 
+
 app.MapControllers();
-app.MapFallbackToFile("/index.html");
 
 app.Run();

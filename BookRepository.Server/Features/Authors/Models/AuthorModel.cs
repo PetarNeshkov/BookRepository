@@ -1,7 +1,7 @@
 ﻿
 namespace BookRepository.Api.Features.Authors.Models
 {
-    public class AuthorRequestModel
+    public class AuthorModel
     {
         public string Name { get; init; }
 

@@ -1,6 +1,8 @@
 ﻿using BookRepository.Data;
 using ELearningPlatform.Common.DependencyInjectionContracts;
+using FluentValidation;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 
 namespace BookRepository.Api.Infrastructure
 {
@@ -78,5 +80,9 @@ namespace BookRepository.Api.Infrastructure
 
             return services;
         }
+
+        public static IServiceCollection AddValidators(this IServiceCollection services)
+           => services
+             .AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
     }
 }
