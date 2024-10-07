@@ -1,10 +1,12 @@
-﻿using BookRepository.Data;
+﻿using AutoMapper;
+using BookRepository.Api.Infrastructure.AutoMapper;
+using BookRepository.Data;
 using ELearningPlatform.Common.DependencyInjectionContracts;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
-namespace BookRepository.Api.Infrastructure
+namespace BookRepository.Api.Infrastructure.Extensions
 {
     public static class ServiceCollectionExtensions
     {
@@ -84,5 +86,16 @@ namespace BookRepository.Api.Infrastructure
         public static IServiceCollection AddValidators(this IServiceCollection services)
            => services
              .AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+
+        public static IApplicationBuilder UseAutoMapper(this IApplicationBuilder app)
+        {
+            var services = app.ApplicationServices;
+
+            var mapper = services.GetRequiredService<IMapper>();
+
+            AutoMapperSingleton.Init(mapper);
+
+            return app;
+        }
     }
 }

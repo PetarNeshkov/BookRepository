@@ -1,4 +1,5 @@
-using BookRepository.Api.Infrastructure;
+using BookRepository.Api.Infrastructure.Extensions;
+using OJS.Services.Infrastructure.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +8,7 @@ builder.Services
     .AddEndpointsApiExplorer()
     .AddApplicationServices()
     .AddValidators()
+    .AddAutoMapperConfigurations<Program>()
     .AddSwaggerGen()
     .AddControllers();
 
@@ -23,6 +25,7 @@ app
     .UseHttpsRedirection()
     .UseAnyCors()
     .UseRouting()
+    .UseAutoMapper()
     .UseAuthorization();
 
 
