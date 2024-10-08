@@ -16,20 +16,20 @@ namespace BookRepository.Api.Features.Authors.Validators
 
             RuleFor(author => author.Name)
                 .NotEmpty()
-                .WithMessage(AuthorNameIsRequredMessage)
+                .WithMessage(NameIsRequiredMessage)
                 .MaximumLength(100)
-                .WithMessage(string.Format(AuthorNameMaxLengthMessage, 100))
+                .WithMessage(string.Format(NameMaxLengthMessage, 100))
                 .MustAsync(async (author, name, cancellation) =>
                     author.OriginalName == name || !await authorsDataService.IsExistingByName(name))
-                .WithMessage(AuthorExistsMessage);
+                .WithMessage(ExistsMessage);
 
             RuleFor(author => author.Bio)
                 .NotEmpty()
-                .WithMessage(AuthorBioIsRequredMessage)
+                .WithMessage(BioIsRequiredMessage)
                 .MinimumLength(10)
-                .WithMessage(string.Format(AuthorBioMinLengthMessage, 10))
+                .WithMessage(string.Format(BioMinLengthMessage, 10))
                 .MaximumLength(1000)
-                .WithMessage(string.Format(AuthorBioMaxLengthMessage, 1000))
+                .WithMessage(string.Format(BioMaxLengthMessage, 1000))
                 .When(author => author.Bio != author.OriginalBio);
         }
     }

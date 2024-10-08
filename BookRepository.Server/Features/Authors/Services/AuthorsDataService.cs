@@ -13,10 +13,7 @@ namespace BookRepository.Api.Features.Authors.Services
     {
         public async Task<IEnumerable<AuthorNameModel>> GetAllAuthorsNames()
           => await GetQuery(orderBy: x => x.CreatedOn, descending: true)
-                  .Select(x => new AuthorNameModel
-                  {
-                      Name = x.Name
-                  })
+                  .MapCollection<AuthorNameModel>()
                   .ToListAsync();
 
         public async Task<IEnumerable<TServiceModel>> GetAllAuthorsByPage<TServiceModel>(int itemsPerPage, int skip)
@@ -26,5 +23,9 @@ namespace BookRepository.Api.Features.Authors.Services
 
         public Task<bool> IsExistingByName(string name)
             => Exists(a => a.Name == name);
+
+        public async Task<IEnumerable<Author>> GetAuthorsByIds(IEnumerable<int> authorIds)
+            => await GetQuery(a => authorIds.Contains(a.Id))
+                    .ToListAsync();
     }
 }

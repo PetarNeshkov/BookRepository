@@ -12,5 +12,7 @@ namespace BookRepository.Api.Features.Authors.Services.Interfaces
         Task<IEnumerable<TServiceModel>> GetAllAuthorsByPage<TServiceModel>(int itemsPerPage, int skip);
 
         Task<IEnumerable<AuthorNameModel>> GetAllAuthorsNames();
+
+        Task<IEnumerable<Author>> GetAuthorsByIds(IEnumerable<int> authorIds);
     }
 }

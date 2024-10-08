@@ -68,7 +68,7 @@ namespace BookRepository.Api.Features.Authors
 
             if (authorData is null)
             {
-                return NotFound(AuthorNotFoundMessage);
+                return NotFound(NotFoundMessage);
             }
 
 
