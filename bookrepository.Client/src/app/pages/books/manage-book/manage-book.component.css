@@ -1,0 +1,112 @@
+/* General page styling */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
+
+/* Container for the form */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #ffffff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.page-header {
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-control {
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.ninety-percent-width {
+  width: 90%;
+}
+
+.ninety-eight-percent-width {
+  width: 88%;
+}
+
+.mat-form-field {
+  display: block;
+  margin-bottom: 20px;
+}
+
+textarea {
+  resize: vertical; 
+}
+
+.is-invalid {
+  border-color: #dc3545;
+  background-color: #f8d7da;
+}
+
+.invalid-feedback,
+.mat-error {
+  color: #dc3545;
+  font-size: 0.875em;
+}
+
+.form-group .invalid-feedback,
+.mat-error {
+  margin-top: 0.25rem;
+}
+
+.is-invalid + label {
+  color: #dc3545;
+}
+
+button {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 20px;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+button:disabled {
+  background-color: #6c757d;
+  cursor: not-allowed;
+}
+
+@media (max-width: 600px) {
+  .container {
+    width: 90%;
+    padding: 10px;
+  }
+
+  .full-width,
+  .ninety-percent-width,
+  .ninety-eight-percent-width {
+    width: 100%;
+  }
+
+  button {
+    width: 100%;
+  }
+}

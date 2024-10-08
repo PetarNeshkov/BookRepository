@@ -1,1 +1,61 @@
-<p>manage-book works!</p>
+<div class="container">
+  <div class="page-header">{{title}}</div>
+  <form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="title">Book Title</label>
+      <input id="title"
+             type="text"
+             formControlName="title"
+             class="form-control ninety-eight-percent-width"
+             [ngClass]="{ 'is-invalid': f['title'].touched && f['title'].invalid }" />
+
+      <div *ngIf="f['title'].touched && f['title'].invalid" class="invalid-feedback">
+        Book title is required.
+      </div>
+      <div *ngIf="errorMessage['Title']" class="invalid-feedback">
+        {{ errorMessage['Title'] }}
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="description">Book Description</label>
+      <textarea id="description"
+                formControlName="description"
+                class="form-control ninety-eight-percent-width"
+                [ngClass]="{ 'is-invalid': f['description'].touched && f['description'].invalid }">
+      </textarea>
+      <div *ngIf="f['description'].touched && f['description'].invalid" class="invalid-feedback">
+        Book description is required.
+      </div>
+      <div *ngIf="errorMessage['Description']" class="invalid-feedback">
+        {{ errorMessage['Description'] }}
+      </div>
+    </div>
+    <div class="form-group">
+      <mat-form-field class="ninety-percent-width" appearance="fill">
+        <mat-label>Publish Date</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="publishDate" readonly>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="f['publishDate'].touched && f['publishDate'].invalid">
+          Publish date is required.
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field class="ninety-percent-width" appearance="fill">
+        <mat-label>Authors</mat-label>
+        <mat-select formControlName="authors" multiple (selectionChange)="authorSelectionChange($event)">
+          <mat-option *ngFor="let author of authorsList" [value]="author.id">
+            {{ author.name }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="f['authors'].invalid && f['authors'].errors?.['maxAuthors']">
+          You can select up to 3 authors only.
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <button type="submit" class="btn" [disabled]="bookForm.invalid">
+      Submit
+    </button>
+  </form>
+</div>

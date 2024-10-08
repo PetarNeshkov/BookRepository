@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import * as RouteConstants from '../constants/route.constants';
 import {ApiService} from './api.service';
-import {IAuthor, IAuthorsModel, IAuthorsNamesModel, IAuthorUrlParams} from '../models/Authors';
+import {IAuthor, IAuthorsModel, IAuthorUrlParams, IAuthorName} from '../models/Authors';
 import {catchError, Observable, throwError} from 'rxjs';
 import {HttpErrorResponse, HttpParams} from '@angular/common/http';
 
@@ -15,7 +15,7 @@ export class AuthorsService
 
   constructor (private api : ApiService) { }
 
-  createAuthor (author : IAuthorUrlParams) : Observable<any>
+  createAuthor (author : IAuthorUrlParams) : Observable<IAuthorUrlParams>
   {
     return this.api.post(this.routeConstants.CREATE_AUTHOR, author).pipe(
       catchError((error : HttpErrorResponse) =>
@@ -46,7 +46,7 @@ export class AuthorsService
         params);
   }
 
-  getAuthorsNames () : Observable<IAuthorsNamesModel>
+  getAuthorsNames () : Observable<IAuthorName[]>
   {
     return this.api
       .get(this.routeConstants.GETAUTHORSNAMES);

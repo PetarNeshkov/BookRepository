@@ -6,13 +6,14 @@ export interface IAuthorUrlParams
 
 export interface IAuthor
 {
-  id? : number;
+  id ?: number;
   name : string;
   bio : string;
 }
 
 export interface IAuthorName
 {
+  id: number;
   name : string;
 }
 
@@ -22,12 +23,8 @@ export interface IAuthorsModel
   authorsTotalCount : number;
 }
 
-export interface IAuthorsNamesModel
+export interface IEditAuthorUrlParams extends IAuthor
 {
-  authors : IAuthorName[];
-}
-
-export interface IEditAuthorUrlParams extends IAuthor {
-  originalName? : string;
-  originalBio? : string;
+  originalName : string;
+  originalBio : string;
 };
