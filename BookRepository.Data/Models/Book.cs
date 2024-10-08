@@ -9,14 +9,14 @@ namespace BookRepository.Data.Models
     {
         [Required]
         [MaxLength(TitleMaxLength)]
-        public string Title { get; set; }
+        public required string Title { get; set; }
 
         [Required]
         [StringLength(DescriptionMaxLength, MinimumLength = DescriptionMinLength)]
-        public string Description { get; set; }
+        public required string Description { get; set; }
 
-        public DateTime PublishDate { get; set; }
+        public required DateTime PublishDate { get; set; }
 
-        public HashSet<string> Authors { get; set; } = [];
+        public ICollection<Author> Authors { get; set; } = new HashSet<Author>();
     }
 }
