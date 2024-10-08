@@ -1,4 +1,4 @@
-﻿namespace BookRepository.Api.Features.BookChanges.Models
+﻿namespace BookRepository.Api.Features.BooksChanges.Models
 {
     public class BookChangeModel
     {

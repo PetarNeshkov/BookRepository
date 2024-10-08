@@ -1,11 +1,12 @@
-﻿using BookRepository.Api.Features.BookChanges.Models;
-using BookRepository.Api.Features.Books.Services.Interfaces;
-using BookRepository.Api.Features.BooksHistories.Services.Interfaces;
+﻿using BookRepository.Api.Features.Books.Services.Interfaces;
+using BookRepository.Api.Features.BooksChanges.Models;
+using BookRepository.Api.Features.BooksChanges.Services.Interfaces;
 using BookRepository.Data.Models;
 
-namespace BookRepository.Api.Features.BookChanges.Services
+namespace BookRepository.Api.Features.BooksChanges.Services
 {
-    public class BooksChangesBusinessService(IBooksChangesDataService bookChangesDataService)
+    public class BooksChangesBusinessService(
+        IBooksChangesDataService bookChangesDataService)
         : IBooksBusinessService
     {
         public async Task CreateNewBook(BookChangeModel model)

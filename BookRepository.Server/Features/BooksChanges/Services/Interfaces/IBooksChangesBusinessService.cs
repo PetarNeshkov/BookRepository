@@ -1,7 +1,7 @@
-﻿using BookRepository.Api.Features.BookChanges.Models;
+﻿using BookRepository.Api.Features.BooksChanges.Models;
 using ELearningPlatform.Common.DependencyInjectionContracts;
 
-namespace BookRepository.Api.Features.BookChanges.Services.Interfaces
+namespace BookRepository.Api.Features.BooksChanges.Services.Interfaces
 {
     public interface IBooksChangesBusinessService : IService
     {
