@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import * as RouteConstants from '../constants/route.constants';
 import {ApiService} from './api.service';
-import {IBookUrlParams, IEditBookUrlParams} from '../models/Books';
+import {IBookUrlParams, IBook} from '../models/Books';
 import {HttpErrorResponse, HttpParams} from '@angular/common/http';
 import {Observable, catchError, throwError} from 'rxjs';
 
@@ -14,7 +14,7 @@ export class BooksService
 
   constructor (private api : ApiService) { }
 
-  createBook (book : IEditBookUrlParams) : Observable<IEditBookUrlParams>
+  createBook (book : IBook) : Observable<IBook>
   {
     return this.api.post(this.routeConstants.CREATE_BOOK, book).pipe(
       catchError((error : HttpErrorResponse) =>
@@ -24,7 +24,7 @@ export class BooksService
     );
   }
 
-  updateBook(book: IBookUrlParams) : Observable<IBookUrlParams>{
+  updateBook (book : IBook) : Observable<IBook>{
     return this.api.patch(this.routeConstants.UPDATE_BOOK, book).pipe(
       catchError((error : HttpErrorResponse) =>
       {
@@ -33,7 +33,7 @@ export class BooksService
     );
   }
 
-  loadBookData (bookId : number) : Observable<IBookUrlParams>
+  loadBookData (bookId : number) : Observable<IBook>
   {
     let params = new HttpParams().set('bookId', bookId.toString());
 

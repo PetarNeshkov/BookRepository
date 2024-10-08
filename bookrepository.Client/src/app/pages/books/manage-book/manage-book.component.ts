@@ -4,9 +4,10 @@ import {Router, ActivatedRoute} from '@angular/router';
 import {IAuthor, IAuthorName} from '../../../models/Authors';
 import {AuthorsService} from '../../../services/authors.service';
 import {BooksService} from '../../../services/books.service';
-import {IBookUrlParams, IEditBookUrlParams} from '../../../models/Books';
+import {IBookUrlParams, IBook} from '../../../models/Books';
 import {ValidationError} from '../../../models/ValidationError';
 import {MatSelectChange} from '@angular/material/select';
+import {formatDate} from '@angular/common';
 
 @Component({
   selector: 'app-manage-book',
@@ -51,7 +52,9 @@ export class ManageBookComponent implements OnInit
       title: ['', Validators.required],
       description: ['', [Validators.required, Validators.maxLength(500)]],
       publishDate: ['', Validators.required],
-      authors: [[], [Validators.required, this.maxAuthorsSelected(3)]],
+      authors: ['', [Validators.required, this.maxAuthorsSelected(3)]],
+      originalTitle: [''],
+      originalDescription: ['']
     });
   }
 
@@ -94,7 +97,7 @@ export class ManageBookComponent implements OnInit
           title: response.title,
           description: response.description,
           publishDate: response.publishDate,
-          authors: response.authors.map((a) => a.name),
+          authors: response.authors,
         });
       },
       error: () =>
@@ -121,7 +124,7 @@ export class ManageBookComponent implements OnInit
     this.submitBookData(bookData);
   }
 
-  private getBookFormData () : IEditBookUrlParams
+  private getBookFormData () : IBook
   {
     return {
       title: this.f['title'].value,
@@ -133,14 +136,18 @@ export class ManageBookComponent implements OnInit
     };
   }
 
-  private submitBookData (bookData : IEditBookUrlParams) : void
+  private submitBookData (bookData : IBook) : void
   {
+    const formattedPublishDate = bookData.publishDate
+      ? formatDate(bookData.publishDate, 'yyyy-MM-dd', 'en')
+      : null;
+
     if (this.bookId) {
-      const request : IEditBookUrlParams = {
+      const request : IBook = {
         id: this.bookId,
         title: bookData.title,
         description: bookData.description,
-        publishDate: bookData.publishDate,
+        publishDate: formattedPublishDate ? new Date(formattedPublishDate) : null,
         authors: bookData.authors,
         originalTitle: bookData.originalTitle,
         originalDescription: bookData.originalDescription,
@@ -151,6 +158,8 @@ export class ManageBookComponent implements OnInit
         error: (errors : ValidationError[]) => this.handleErrors(errors),
       });
     } else {
+      bookData.publishDate = formattedPublishDate ? new Date(formattedPublishDate) : null;
+
       this.booksService.createBook(bookData).subscribe({
         next: (response) => this.handleSuccess(response),
         error: (errors : ValidationError[]) => this.handleErrors(errors),
@@ -169,8 +178,11 @@ export class ManageBookComponent implements OnInit
   {
     errors.forEach(err =>
     {
-      this.errorMessage[err.propertyName] = err.errorMessage;
-      this.bookForm.get(err.propertyName)?.setErrors({custom: true});
+      const formControlName = err.propertyName.charAt(0).toLowerCase() + err.propertyName.slice(1);
+
+      this.errorMessage[formControlName] = err.errorMessage;
+      this.bookForm.get(formControlName)?.setErrors({custom: true});
+
     });
   }
 }

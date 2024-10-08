@@ -5,7 +5,7 @@ const baseGetAll = 'GetAll';
 
 const AUTHOR_CONTROLLER_ROUTE = baseApiUrl + '/Authors/';
 const BOOK_CONTROLLER_ROUTE = baseApiUrl + '/Books/';
-const BOOK_HISTORY_CONTROLLER_ROUTE = baseApiUrl + '/Booksistories/';
+const BOOK_HISTORY_CONTROLLER_ROUTE = baseApiUrl + '/BooksStories/';
 
 
 export const AUTHOR_URLS = {

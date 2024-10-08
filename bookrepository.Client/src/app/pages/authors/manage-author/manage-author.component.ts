@@ -133,8 +133,10 @@ export class ManageAuthorComponent implements OnInit
   {
     errors.forEach(err =>
     {
-      this.errorMessage[err.propertyName] = err.errorMessage;
-      this.authorForm.get(err.propertyName)?.setErrors({custom: true});
+      const formControlName = err.propertyName.charAt(0).toLowerCase() + err.propertyName.slice(1);
+
+      this.errorMessage[formControlName] = err.errorMessage;
+      this.authorForm.get(formControlName)?.setErrors({custom: true});
     });
   }
 }

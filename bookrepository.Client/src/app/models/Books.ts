@@ -1,4 +1,4 @@
-import { IAuthorName } from "./Authors";
+import {IAuthorName} from "./Authors";
 
 export interface IBookUrlParams
 {
@@ -9,8 +9,9 @@ export interface IBookUrlParams
   authors : IAuthorName[];
 }
 
-export interface IEditBookUrlParams extends IBookUrlParams
+export interface IBook extends Omit<IBookUrlParams, 'publishDate'>
 {
+  publishDate : Date | null;
   originalTitle : string;
   originalDescription : string;
 }
