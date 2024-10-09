@@ -52,7 +52,7 @@ namespace BookRepository.Api.Features.Books.Services
 
         public async Task<string> UpdateBook(EditBookModel model)
         {
-            var book = await booksDataService.OneById(model.Id);
+            var book = await booksDataService.GetByIdWithAuthors(model.Id);
 
             var originalTitle = book!.Title;
             var originalDescription = book.Description;
