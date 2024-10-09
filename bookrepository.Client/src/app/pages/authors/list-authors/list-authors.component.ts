@@ -27,6 +27,7 @@ export class ListAuthorsComponent implements OnInit
       setTimeout(() =>
       {
         this.successMessage = null;
+        this.router.navigateByUrl(this.router.url, {state: {}});
       }, 5000);
     }
 

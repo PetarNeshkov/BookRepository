@@ -28,6 +28,10 @@ mat-paginator {
   max-width: 100px;
 }
 
+.mat-mdc-row {
+  word-wrap: break-word;
+}
+
 .custom-row:nth-child(even) {
   background-color: #f0f0f0;
 }

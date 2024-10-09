@@ -46,6 +46,7 @@ export class ListBooksComponent implements OnInit
       setTimeout(() =>
       {
         this.successMessage = null;
+        this.router.navigateByUrl(this.router.url, {state: {}});
       }, 5000);
     }
 
@@ -74,10 +75,22 @@ export class ListBooksComponent implements OnInit
 
   deleteBook (bookId : number) : void
   {
-    this.booksService.deleteBook(bookId).subscribe(() =>
-    {
-      this.successMessage = 'Book deleted successfully';
-      this.getCurrentBooks();
+    this.booksService.deleteBook(bookId).subscribe({
+      next: (response: string) =>
+      {
+        this.successMessage = response;
+
+        setTimeout(() =>
+        {
+          this.successMessage = null;
+        }, 5000);
+
+        this.getCurrentBooks();
+      },
+      error: () =>
+      {
+        this.router.navigate(['/notFound']);
+      }
     });
   }
 

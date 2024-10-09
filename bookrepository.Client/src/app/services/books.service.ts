@@ -24,7 +24,8 @@ export class BooksService
     );
   }
 
-  updateBook (book : IBook) : Observable<IBook>{
+  updateBook (book : IBook) : Observable<IBook>
+  {
     return this.api.patch(this.routeConstants.UPDATE_BOOK, book).pipe(
       catchError((error : HttpErrorResponse) =>
       {
@@ -33,10 +34,10 @@ export class BooksService
     );
   }
 
-  deleteBook (bookId : number) : Observable<void>
+  deleteBook (bookId : number) : Observable<string>
   {
     let params = new URLSearchParams();
-    params.append('bookId', bookId.toString());
+    params.append('id', bookId.toString());
 
     return this.api.delete(this.routeConstants.DELETE_BOOK, params).pipe(
       catchError((error : HttpErrorResponse) =>

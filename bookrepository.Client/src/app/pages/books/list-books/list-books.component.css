@@ -19,7 +19,7 @@
 }
 
   .filter-section input[type="text"] {
-    width: 250px; /* Increased width */
+    width: 250px;
     padding: 5px;
     font-size: 16px;
   }
@@ -35,7 +35,6 @@
   gap: 10px;
 }
 
-/* Other styles unchanged */
 .actions-buttons {
   display: flex;
   gap: 10px;
@@ -99,6 +98,26 @@
 
 mat-paginator {
   margin-top: 10px;
+}
+
+.mat-mdc-cell {
+  max-width: 100px;
+}
+
+.mat-mdc-row {
+  word-wrap: break-word;
+}
+
+.checkbox:hover {
+  cursor: pointer;
+}
+
+input[type="checkbox"]:hover {
+  cursor: pointer;
+}
+
+#sortDirection {
+  cursor: pointer;
 }
 
 .success-message {
