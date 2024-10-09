@@ -47,7 +47,35 @@ namespace BookRepository.Api.Features.Books.Services
             await booksChangesBusinessService.CreateBookChangeLog(book.Id, successfulMessage);
 
 
-            return string.Format(SuccessfulCreationMessage, model.Title);
+            return successfulMessage;
+        }
+
+        public async Task<string> UpdateBook(EditBookModel model)
+        {
+            var book = await booksDataService.OneById(model.Id);
+
+            var originalTitle = book!.Title;
+            var originalDescription = book.Description;
+            var originalPublishDate = book.PublishDate.Date;
+            var originalAuthors = string.Join(", ", book.Authors.Select(a => a.Name));
+
+            await ApplyBookUpdates(booksDataService, authorsDataService, model, book);
+
+            var newTitle = book.Title;
+            var newDescription = book.Description;
+            var newPublishDate = book.PublishDate.Date;
+            var newAuthors = string.Join(", ", book.Authors.Select(a => a.Name));
+
+            var successfulMessage = string.Format(
+                    SuccessfulBookUpdateMessage,
+                    originalTitle, originalDescription, originalPublishDate.ToString("dd/MM/yyyy"), originalAuthors,
+                    newTitle, newDescription, newPublishDate.ToString("dd/MM/yyyy"), newAuthors
+                );
+
+            await booksChangesBusinessService.CreateBookChangeLog(book.Id, successfulMessage);
+
+
+            return successfulMessage;
         }
 
         public async Task<string> DeleteBook(int id)
@@ -76,6 +104,20 @@ namespace BookRepository.Api.Features.Books.Services
             }
 
             return authorEntity.Map<BookModel>();
+        }
+
+        private static async Task ApplyBookUpdates(IBooksDataService booksDataService, IAuthorsDataService authorsDataService, EditBookModel model, Book? book)
+        {
+            book!.Title = model.Title;
+            book!.Description = model.Description;
+            book!.PublishDate = model.PublishDate!.Value.Date;
+            book.Authors.Clear();
+
+            var authors = await authorsDataService.GetAuthorsByIds(model.Authors);
+            book.Authors = authors.ToList();
+
+            booksDataService.Update(book);
+            await booksDataService.SaveChanges();
         }
     }
 }

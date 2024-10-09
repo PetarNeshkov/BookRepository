@@ -17,7 +17,6 @@ namespace BookRepository.Data.Models
         public required DateTime ChangeTime { get; set; }
 
         [Required]
-        [MaxLength(ChangeDesriptionMaxLength)]
         public required string ChangeDescription { get; set; }
     }
 }

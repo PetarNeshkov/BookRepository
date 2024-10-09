@@ -14,7 +14,8 @@ namespace BookRepository.Api.Features.Books
     public class BooksController(
         IBooksBusinessService booksBusinessService,
         CreateBookValidator createValidator,
-        DeleteBookValidator deleteBookValidator)
+        DeleteBookValidator deleteBookValidator,
+        EditBookValidator editBookValidator)
         : BaseApiController
     {
         [HttpPost]
@@ -45,6 +46,21 @@ namespace BookRepository.Api.Features.Books
 
             return await booksBusinessService.DeleteBook(model.Id)
                    .ToOkResult();
+        }
+
+        [HttpPatch]
+        public async Task<IActionResult> UpdateBook(EditBookModel model)
+        {
+            model.OperationType = CrudOperationType.Update;
+            var validationResult = await editBookValidator.TestValidateAsync(model);
+
+            if (!validationResult.IsValid)
+            {
+                return UnprocessableEntity(validationResult.Errors);
+            }
+
+            return await booksBusinessService.UpdateBook(model)
+                .ToOkResult();
         }
 
 

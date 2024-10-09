@@ -20,7 +20,7 @@ export const BOOK_URLS = {
   ALLBOOKS: `${ BOOK_CONTROLLER_ROUTE }` + baseGetAll,
   GETBOOKATA: `${ BOOK_CONTROLLER_ROUTE }` + 'GetBookData',
   CREATE_BOOK: `${ BOOK_CONTROLLER_ROUTE }` + 'CreateBook',
-  UPDATE_BOOK: `${ BOOK_CONTROLLER_ROUTE }` + 'EditBook',
+  UPDATE_BOOK: `${ BOOK_CONTROLLER_ROUTE }` + 'UpdateBook',
   DELETE_BOOK: `${ BOOK_CONTROLLER_ROUTE }` + 'DeleteBook',
 };
 

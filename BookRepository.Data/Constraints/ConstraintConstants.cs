@@ -14,7 +14,7 @@
 
         public static class BookChange
         {
-            public const int ChangeDesriptionMaxLength = 80;
+            public const int ChangeDesriptionMaxLength = 1000;
         }
 
         public static class Author

@@ -37,10 +37,10 @@ export class ManageBookComponent implements OnInit
 
     this.route.paramMap.subscribe((params) =>
     {
-      const bookId = params.get('id') ? +params.get('id')! : null;
+      this.bookId = params.get('id') ? +params.get('id')! : null;
 
-      if (bookId) {
-        this.loadBookData(bookId);
+      if (this.bookId) {
+        this.loadBookData(this.bookId);
         this.title = 'Edit a Book';
       }
     });
@@ -97,7 +97,9 @@ export class ManageBookComponent implements OnInit
           title: response.title,
           description: response.description,
           publishDate: response.publishDate,
-          authors: response.authors.map((author : any) => author.id)
+          authors: response.authors.map((author : any) => author.id),
+          originalTitle: response.title,
+          originalDescription: response.description
         });
       },
       error: () =>

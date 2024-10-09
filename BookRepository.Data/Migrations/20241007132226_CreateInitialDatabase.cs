@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -53,7 +52,7 @@ namespace BookRepository.Data.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     BookId = table.Column<int>(type: "int", nullable: false),
                     ChangeTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ChangeDescription = table.Column<string>(type: "nvarchar(80)", maxLength: 80, nullable: false)
+                    ChangeDescription = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false)
                 },
                 constraints: table =>
                 {

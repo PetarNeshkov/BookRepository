@@ -104,8 +104,8 @@ namespace BookRepository.Data.Migrations
 
                     b.Property<string>("ChangeDescription")
                         .IsRequired()
-                        .HasMaxLength(80)
-                        .HasColumnType("nvarchar(80)");
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
 
                     b.Property<DateTime>("ChangeTime")
                         .HasColumnType("datetime2");

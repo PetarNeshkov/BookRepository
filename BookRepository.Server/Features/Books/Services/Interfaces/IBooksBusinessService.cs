@@ -11,6 +11,8 @@ namespace BookRepository.Api.Features.Books.Services.Interfaces
 
         Task<string> CreateNewBook(CreateBookRequestModel model);
 
+        Task<string> UpdateBook(EditBookModel model);
+
         Task<string> DeleteBook(int id);
     }
 }

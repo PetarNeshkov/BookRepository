@@ -8,7 +8,7 @@ namespace BookRepository.Api.Features.Authors.Models
 
         public string Bio { get; init; }
 
-        public string? OriginalName { get; init; }
-        public string? OriginalBio { get; init; }
+        public string OriginalName { get; init; }
+        public string OriginalBio { get; init; }
     }
 }
