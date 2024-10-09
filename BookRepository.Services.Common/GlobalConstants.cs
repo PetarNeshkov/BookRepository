@@ -2,10 +2,14 @@
 {
     public static class GlobalConstants
     {
-        public const int ItemsPerPage = 5;
         public const string SuccessfulCreationMessage = "The {0} was successfully created.";
         public const string SuccessfulEditMessage = "The {0} was successfully edited.";
+        public const string SuccessfulDeleteMessage = "The {0} was successfully deleted.";
         public const string ModelsRegexPatternTemplate = @"^{0}\..+Models,";
+        public const string AscendingConstant = "asc";
+        public const string DescendingConstant = "desc";
+        public const int DefaultPage = 1;
+        public const int DefaultItemsPerPage = 10;
 
         public static class ErrorMessages
         {

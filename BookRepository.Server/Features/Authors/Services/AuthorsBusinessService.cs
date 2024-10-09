@@ -12,11 +12,11 @@ namespace BookRepository.Api.Features.Authors.Services
     {
         public async Task<AuthorResponseModel> GetAllAuthorsByPage(int page)
         {
-            var skip = (page - 1) * ItemsPerPage;
+            var skip = (page - 1) * DefaultItemsPerPage;
 
             var authorsTotalCount = await authorsDataService.Count();
 
-            var authorsPerPage = await authorsDataService.GetAllAuthorsByPage<AuthorModel>(ItemsPerPage, skip);
+            var authorsPerPage = await authorsDataService.GetAllAuthorsByPage<AuthorModel>(DefaultItemsPerPage, skip);
 
             return new AuthorResponseModel
             {

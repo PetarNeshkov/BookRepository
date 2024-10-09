@@ -13,6 +13,19 @@ namespace BookRepository.Api.Features.Books.Services
         IBooksChangesBusinessService booksChangesBusinessService)
         : IBooksBusinessService
     {
+        public async Task<BookResponseModel> GetCurrentBooks(BookFilterRequestModel filterRequestModel)
+        {
+            var booksTotalCount = await booksDataService.Count();
+
+            var filteredBooks = await booksDataService.GetAllAuthorsByPage<BookModel>(filterRequestModel);
+
+            return new BookResponseModel
+            {
+                Books = filteredBooks,
+                BooksTotalCount = booksTotalCount
+            };
+        }
+
         public async Task<string> CreateNewBook(CreateBookRequestModel model)
         {
             var book = new Book
@@ -36,5 +49,6 @@ namespace BookRepository.Api.Features.Books.Services
 
             return string.Format(SuccessfulCreationMessage, model.Title);
         }
+
     }
 }

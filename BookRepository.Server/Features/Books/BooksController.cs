@@ -5,6 +5,7 @@ using BookRepository.Api.Infrastructure.Extensions;
 using BookRepository.Services.Common.Enumerations;
 using FluentValidation.TestHelper;
 using Microsoft.AspNetCore.Mvc;
+using static Microsoft.AspNetCore.Http.StatusCodes;
 
 namespace BookRepository.Api.Features.Books
 {
@@ -27,5 +28,11 @@ namespace BookRepository.Api.Features.Books
             return await booksBusinessService.CreateNewBook(model)
                         .ToOkResult();
         }
+
+        [HttpGet]
+        [ProducesResponseType(typeof(BookResponseModel), Status200OK)]
+        public async Task<IActionResult> GetAll([FromQuery] BookFilterRequestModel model)
+            => await booksBusinessService.GetCurrentBooks(model)
+                    .ToOkResult();
     }
 }
