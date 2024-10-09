@@ -3,7 +3,6 @@ using BookRepository.Api.Features.Books.Models;
 using BookRepository.Api.Features.Books.Services.Interfaces;
 using BookRepository.Api.Features.BooksChanges.Services.Interfaces;
 using BookRepository.Data.Models;
-
 using static BookRepository.Services.Common.GlobalConstants;
 namespace BookRepository.Api.Features.Books.Services
 {
@@ -44,11 +43,26 @@ namespace BookRepository.Api.Features.Books.Services
 
             var successfulMessage = string.Format(SuccessfulCreationMessage, model.Title);
 
-            await booksChangesBusinessService.CreateBookChangeLog(book.Id, model.Description);
+            await booksChangesBusinessService.CreateBookChangeLog(book.Id, successfulMessage);
 
 
             return string.Format(SuccessfulCreationMessage, model.Title);
         }
 
+        public async Task<string> DeleteBook(int id)
+        {
+            var bookToDelete = await booksDataService.OneById(id);
+
+            booksDataService.Delete(bookToDelete!);
+
+            await booksDataService.SaveChanges();
+
+            var successfulMessage = string.Format(SuccessfulDeleteMessage, bookToDelete!.Title);
+
+            await booksChangesBusinessService.CreateBookChangeLog(bookToDelete.Id, successfulMessage);
+
+            return string.Format(SuccessfulCreationMessage, bookToDelete.Title);
+
+        }
     }
 }

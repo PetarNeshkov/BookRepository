@@ -4,16 +4,16 @@ namespace BookRepository.Api.Features.Books.Models
 {
     public class BookFilterRequestModel
     {
-        public int Page { get; set; } = DefaultPage;
+        public int Page { get; init; } = DefaultPage;
 
-        public int ItemsPerPage { get; set; } = DefaultItemsPerPage;
+        public int ItemsPerPage { get; init; } = DefaultItemsPerPage;
 
-        public string? Query { get; set; }
+        public string? Query { get; init; }
 
-        public bool FilterByTitle { get; set; }
+        public bool FilterByTitle { get; init; }
 
-        public bool FilterByAuthor { get; set; }
+        public bool FilterByAuthor { get; init; }
 
-        public string SortDirection { get; set; } = AscendingConstant;
+        public string SortDirection { get; init; } = AscendingConstant;
     }
 }

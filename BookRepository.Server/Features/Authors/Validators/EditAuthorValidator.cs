@@ -9,7 +9,6 @@ namespace BookRepository.Api.Features.Authors.Validators
 {
     public class EditAuthorValidator : BaseModelValidator<EditAuthorModel, int>
     {
-        private readonly IAuthorsDataService authorsDataService;
         public EditAuthorValidator(IAuthorsDataService authorsDataService)
         {
             AddIdValidation(authorsDataService);

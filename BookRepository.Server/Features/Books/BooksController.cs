@@ -11,7 +11,8 @@ namespace BookRepository.Api.Features.Books
 {
     public class BooksController(
         IBooksBusinessService booksBusinessService,
-        CreateBookValidator createValidator)
+        CreateBookValidator createValidator,
+        DeleteBookValidator deleteBookValidator)
         : BaseApiController
     {
         [HttpPost]
@@ -28,6 +29,22 @@ namespace BookRepository.Api.Features.Books
             return await booksBusinessService.CreateNewBook(model)
                         .ToOkResult();
         }
+
+        [HttpDelete]
+        public async Task<IActionResult> DeleteBook([FromQuery] DeleteBookRequestModel model)
+        {
+            model.OperationType = CrudOperationType.Delete;
+            var validationResult = await deleteBookValidator.TestValidateAsync(model);
+
+            if (!validationResult.IsValid)
+            {
+                return UnprocessableEntity(validationResult.Errors);
+            }
+
+            return await booksBusinessService.DeleteBook(model.Id)
+                   .ToOkResult();
+        }
+
 
         [HttpGet]
         [ProducesResponseType(typeof(BookResponseModel), Status200OK)]
