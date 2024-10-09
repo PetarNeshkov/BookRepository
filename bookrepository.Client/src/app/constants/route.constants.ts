@@ -13,7 +13,7 @@ export const AUTHOR_URLS = {
   UPDATE_AUTHOR: `${ AUTHOR_CONTROLLER_ROUTE }` + 'UpdateAuthor',
   ALL_AUTHORSBYPAGE: `${ AUTHOR_CONTROLLER_ROUTE }` + baseGetAll,
   GETAUTHORSNAMES: `${ AUTHOR_CONTROLLER_ROUTE }` + 'GetAllAuthorsNames',
-  GETAUTHORDATA: `${ AUTHOR_CONTROLLER_ROUTE }` + 'GetAuthorsData'
+  GETAUTHORDATA: `${ AUTHOR_CONTROLLER_ROUTE }` + 'GetAuthorData'
 };
 
 export const BOOK_URLS = {

@@ -97,7 +97,7 @@ export class ManageBookComponent implements OnInit
           title: response.title,
           description: response.description,
           publishDate: response.publishDate,
-          authors: response.authors,
+          authors: response.authors.map((author : any) => author.id)
         });
       },
       error: () =>
