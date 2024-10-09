@@ -6,5 +6,6 @@ namespace BookRepository.Api.Features.BooksChanges.Services.Interfaces
 {
     public interface IBooksChangesDataService : IDataService<BookChange>, IService
     {
+        Task<IEnumerable<TServiceModel>> GetCurrentBooksChanges<TServiceModel>(int page);
     }
 }

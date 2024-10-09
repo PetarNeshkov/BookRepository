@@ -1,4 +1,5 @@
-﻿using BookRepository.Api.Features.BooksChanges.Services.Interfaces;
+﻿using BookRepository.Api.Features.BooksChanges.Models;
+using BookRepository.Api.Features.BooksChanges.Services.Interfaces;
 using BookRepository.Data.Models;
 
 namespace BookRepository.Api.Features.BooksChanges.Services
@@ -19,6 +20,19 @@ namespace BookRepository.Api.Features.BooksChanges.Services
             await bookChangesDataService.Add(bookChange);
 
             await bookChangesDataService.SaveChanges();
+        }
+
+        public async Task<BookChangeResponseModel> GetCurrentChanges(int page = 1)
+        {
+            var authorsTotalCount = await bookChangesDataService.Count();
+
+            var authorsPerPage = await bookChangesDataService.GetCurrentBooksChanges<BookChangeModel>(page);
+
+            return new BookChangeResponseModel
+            {
+                BooksChanges = authorsPerPage,
+                BooksChangesTotalCount = authorsTotalCount,
+            }; ;
         }
     }
 }

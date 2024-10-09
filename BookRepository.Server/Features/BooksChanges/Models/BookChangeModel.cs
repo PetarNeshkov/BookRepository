@@ -1,6 +1,9 @@
-﻿namespace BookRepository.Api.Features.BooksChanges.Models
+﻿using BookRepository.Api.Infrastructure.AutoMapper;
+using BookRepository.Data.Models;
+
+namespace BookRepository.Api.Features.BooksChanges.Models
 {
-    public class BookChangeModel
+    public class BookChangeModel : IMapFrom<BookChange>
     {
         public int BookId { get; init; }
 
