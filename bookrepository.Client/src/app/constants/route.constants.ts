@@ -5,7 +5,7 @@ const baseGetAll = 'GetAll';
 
 const AUTHOR_CONTROLLER_ROUTE = baseApiUrl + '/Authors/';
 const BOOK_CONTROLLER_ROUTE = baseApiUrl + '/Books/';
-const BOOK_HISTORY_CONTROLLER_ROUTE = baseApiUrl + '/BooksStories/';
+const BOOK_CHANGES_CONTROLLER_ROUTE = baseApiUrl + '/BooksChanges/';
 
 
 export const AUTHOR_URLS = {
@@ -24,7 +24,6 @@ export const BOOK_URLS = {
   DELETE_BOOK: `${ BOOK_CONTROLLER_ROUTE }` + 'DeleteBook',
 };
 
-export const BOOK_HISTORIES_URLS = {
-  ALL_BOOK_HISTORIES: `${ BOOK_HISTORY_CONTROLLER_ROUTE }` + baseGetAll,
-  CREATE_BOOK_HISTORY: `${ BOOK_HISTORY_CONTROLLER_ROUTE }` + 'CreateBookHistory'
+export const BOOK_CHANGES_URLS = {
+  ALL_BOOK_HISTORIES: `${ BOOK_CHANGES_CONTROLLER_ROUTE }` + baseGetAll,
 };
