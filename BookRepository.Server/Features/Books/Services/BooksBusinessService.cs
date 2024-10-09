@@ -84,13 +84,13 @@ namespace BookRepository.Api.Features.Books.Services
 
             booksDataService.Delete(bookToDelete!);
 
-            await booksDataService.SaveChanges();
-
             var successfulMessage = string.Format(SuccessfulDeleteMessage, bookToDelete!.Title);
 
             await booksChangesBusinessService.CreateBookChangeLog(bookToDelete.Id, successfulMessage);
 
-            return string.Format(SuccessfulCreationMessage, bookToDelete.Title);
+            await booksDataService.SaveChanges();
+
+            return successfulMessage;
 
         }
 

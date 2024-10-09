@@ -1,7 +1,7 @@
 ﻿using BookRepository.Data.Common;
 using System.ComponentModel.DataAnnotations;
 
-using static BookRepository.Data.Constraints.ConstraintConstants.Book;
+using static BookRepository.Data.Constraints.DatabaseConstants.Book;
 
 namespace BookRepository.Data.Models
 {

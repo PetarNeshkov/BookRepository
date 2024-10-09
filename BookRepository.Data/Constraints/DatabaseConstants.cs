@@ -1,6 +1,6 @@
 ﻿namespace BookRepository.Data.Constraints
 {
-    public static class ConstraintConstants
+    public static class DatabaseConstants
     {
         public const int KeyMaxLength = 40;
         public static class Book
@@ -25,5 +25,11 @@
 
             public const int BioMaxLength = 1000;
         }
+
+        public static class Errors
+        {
+            public const string BooksCannotBeSeeded = "Cannot seed books because no authors are available.";
+        }
+
     }
 }

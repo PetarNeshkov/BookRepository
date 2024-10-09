@@ -13,7 +13,7 @@
         public const string AscendingConstant = "asc";
         public const string DescendingConstant = "desc";
         public const int DefaultPage = 1;
-        public const int DefaultItemsPerPage = 10;
+        public const int DefaultItemsPerPage = 5;
 
         public static class ErrorMessages
         {
