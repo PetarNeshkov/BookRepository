@@ -10,7 +10,7 @@ import {ManageBookComponent} from './pages/books/manage-book/manage-book.compone
 import {ListBooksComponent} from './pages/books/list-books/list-books.component';
 import {BookHistoryComponent} from './pages/book-history/book-history.component';
 import {NotFoundComponent} from './pages/not-found/not-found.component';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AuthorsService} from './services/authors.service';
 
 import {MatToolbarModule} from '@angular/material/toolbar';
@@ -39,6 +39,7 @@ import {BooksService} from './services/books.service';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,

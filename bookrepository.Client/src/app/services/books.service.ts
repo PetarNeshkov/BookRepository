@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import * as RouteConstants from '../constants/route.constants';
 import {ApiService} from './api.service';
-import {IBookUrlParams, IBook} from '../models/Books';
+import {IBookUrlParams, IBook, IFilterParams} from '../models/Books';
 import {HttpErrorResponse, HttpParams} from '@angular/common/http';
 import {Observable, catchError, throwError} from 'rxjs';
 
@@ -32,6 +32,40 @@ export class BooksService
       })
     );
   }
+
+  deleteBook (bookId : number) : Observable<void>
+  {
+    let params = new URLSearchParams();
+    params.append('bookId', bookId.toString());
+
+    return this.api.delete(this.routeConstants.DELETE_BOOK, params).pipe(
+      catchError((error : HttpErrorResponse) =>
+      {
+        return throwError(() => error);
+      })
+    );
+  }
+
+  getCurrentBooks (filterParams : IFilterParams)
+  {
+    let params = new HttpParams()
+      .set('page', filterParams.page.toString())
+      .set('sortDirection', filterParams.sortDirection)
+      .set('query', filterParams.query);
+
+    if (filterParams.byTitle) {
+      params = params.set('filterByTitle', 'true');
+    }
+
+    if (filterParams.byAuthor) {
+      params = params.set('filterByAuthor', 'true');
+    }
+
+    return this.api
+      .get(this.routeConstants.ALLBOOKS,
+        params);
+  }
+
 
   loadBookData (bookId : number) : Observable<IBook>
   {

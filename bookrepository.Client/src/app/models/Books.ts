@@ -15,3 +15,18 @@ export interface IBook extends Omit<IBookUrlParams, 'publishDate'>
   originalTitle : string;
   originalDescription : string;
 }
+
+export interface IBooksModel
+{
+  books : IBookUrlParams[];
+  booksTotalCount : number;
+}
+
+export interface IFilterParams
+{
+  query : string;
+  byTitle : boolean;
+  byAuthor : boolean;
+  sortDirection : string;
+  page : number;
+}
