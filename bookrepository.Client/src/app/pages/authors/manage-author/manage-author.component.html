@@ -10,11 +10,11 @@
              class="form-control"
              [ngClass]="{ 'is-invalid': f['name'].touched && f['name'].invalid }" />
 
-      <div *ngIf="f['name'].touched && f['name'].invalid" class="invalid-feedback">
+      <div *ngIf="!errorMessage['name'] && f['name'].touched && f['name'].invalid" class="invalid-feedback">
         Author name is required.
       </div>
-      <div *ngIf="errorMessage['Name']" class="invalid-feedback">
-        {{ errorMessage['Name'] }}
+      <div *ngIf="f['name'].touched && f['name'].invalid" class="invalid-feedback">
+        Author name is required.
       </div>
     </div>
 
@@ -25,11 +25,11 @@
                 class="form-control"
                 [ngClass]="{ 'is-invalid': f['bio'].touched && f['bio'].invalid }"></textarea>
 
-      <div *ngIf="f['bio'].touched && f['bio'].invalid" class="invalid-feedback">
-        Author bio is required.
+      <div *ngIf="errorMessage['bio']" class="invalid-feedback">
+        {{ errorMessage['bio'] }}
       </div>
-      <div *ngIf="errorMessage['Bio']" class="invalid-feedback">
-        {{ errorMessage['Bio'] }}
+      <div *ngIf="!errorMessage['bio'] && f['bio'].touched && f['bio'].invalid" class="invalid-feedback">
+        Author bio is required.
       </div>
     </div>
     <button type="submit" class="btn" [disabled]="authorForm.invalid">

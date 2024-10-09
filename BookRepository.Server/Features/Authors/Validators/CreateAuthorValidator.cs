@@ -22,7 +22,7 @@ namespace BookRepository.Api.Features.Authors.Validators
             RuleFor(author => author.Bio)
                 .NotEmpty()
                 .WithMessage(BioIsRequiredMessage)
-                .MinimumLength(50)
+                .MinimumLength(10)
                 .WithMessage(string.Format(BioMinLengthMessage, 10))
                 .MaximumLength(1000)
                 .WithMessage(string.Format(BioMaxLengthMessage, 1000));
