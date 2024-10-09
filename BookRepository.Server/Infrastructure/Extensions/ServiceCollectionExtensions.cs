@@ -5,6 +5,7 @@ using ELearningPlatform.Common.DependencyInjectionContracts;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
+using UsersChart.Data.Seeding;
 
 namespace BookRepository.Api.Infrastructure.Extensions
 {
@@ -17,14 +18,17 @@ namespace BookRepository.Api.Infrastructure.Extensions
                 .AddDbContext<BookRepositoryDbContext>(options => options
                     .UseSqlServer(configuration.GetConnectionString("BookRepositoryConnectionString")));
 
-
-
         public static IApplicationBuilder MigrateDatabase(this IApplicationBuilder app, IConfiguration configuration)
         {
             using var scope = app.ApplicationServices.CreateScope();
             using var dbContext = scope.ServiceProvider.GetRequiredService<BookRepositoryDbContext>();
 
             dbContext.Database.Migrate();
+
+            new BookRepositoryDbContextSeeder()
+                .SeedDatabase(dbContext, scope.ServiceProvider)
+                .GetAwaiter()
+                .GetResult();
 
             return app;
         }

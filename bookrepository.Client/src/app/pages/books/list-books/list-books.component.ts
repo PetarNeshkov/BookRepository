@@ -39,6 +39,7 @@ export class ListBooksComponent implements OnInit
         this.filterParams.page = 1;
 
         this.getCurrentBooks();
+        this.router.navigateByUrl(this.router.url, {state: {}});
       }
     });
 
@@ -76,13 +77,14 @@ export class ListBooksComponent implements OnInit
   deleteBook (bookId : number) : void
   {
     this.booksService.deleteBook(bookId).subscribe({
-      next: (response: string) =>
+      next: (response : string) =>
       {
         this.successMessage = response;
 
         setTimeout(() =>
         {
           this.successMessage = null;
+          this.router.navigateByUrl(this.router.url, {state: {}});
         }, 5000);
 
         this.getCurrentBooks();
