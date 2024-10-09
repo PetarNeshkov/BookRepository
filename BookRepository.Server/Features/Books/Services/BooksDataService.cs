@@ -17,6 +17,11 @@ namespace BookRepository.Api.Features.Books.Services
         public async Task<bool> IsExistingByTitle(string title)
             => await Exists(a => a.Title == title);
 
+        public async Task<Book?> GetByIdWithAuthors(int bookId)
+            => await GetByIdQuery(bookId)
+                    .Include(book => book.Authors)
+                    .FirstOrDefaultAsync();
+
         public async Task<IEnumerable<TServiceModel>> GetAllAuthorsByPage<TServiceModel>(BookFilterRequestModel filterModel)
         {
             Expression<Func<Book, bool>>? filter = null;
@@ -45,5 +50,6 @@ namespace BookRepository.Api.Features.Books.Services
                         .MapCollection<TServiceModel>()
                         .ToListAsync();
         }
+
     }
 }

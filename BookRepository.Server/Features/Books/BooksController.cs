@@ -5,6 +5,8 @@ using BookRepository.Api.Infrastructure.Extensions;
 using BookRepository.Services.Common.Enumerations;
 using FluentValidation.TestHelper;
 using Microsoft.AspNetCore.Mvc;
+
+using static BookRepository.Services.Common.GlobalConstants.ErrorMessages.Books;
 using static Microsoft.AspNetCore.Http.StatusCodes;
 
 namespace BookRepository.Api.Features.Books
@@ -51,5 +53,19 @@ namespace BookRepository.Api.Features.Books
         public async Task<IActionResult> GetAll([FromQuery] BookFilterRequestModel model)
             => await booksBusinessService.GetCurrentBooks(model)
                     .ToOkResult();
+
+        [HttpGet]
+        public async Task<IActionResult> GetBookData(int bookId)
+        {
+            var bookData = await booksBusinessService
+                .GetBookData(bookId);
+
+            if (bookData is null)
+            {
+                return NotFound(NotFoundMessage);
+            }
+
+            return Ok(bookData);
+        }
     }
 }

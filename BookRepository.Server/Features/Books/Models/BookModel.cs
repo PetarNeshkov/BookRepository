@@ -15,12 +15,5 @@ namespace BookRepository.Api.Features.Books.Models
         public DateTime PublishDate { get; init; }
 
         public IEnumerable<AuthorNameModel> Authors { get; init; }
-
-        //public void RegisterMappings(IProfileExpression configuration)
-        //    => configuration.CreateMap<BookModel, Book>()
-        //        .ForMember(
-        //            d => d.PublishDate,
-        //            opt => opt.MapFrom(d => d.PublishDate.Date));
-
     }
 }

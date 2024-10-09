@@ -2,6 +2,7 @@
 using BookRepository.Api.Features.Books.Models;
 using BookRepository.Api.Features.Books.Services.Interfaces;
 using BookRepository.Api.Features.BooksChanges.Services.Interfaces;
+using BookRepository.Api.Infrastructure.Extensions;
 using BookRepository.Data.Models;
 using static BookRepository.Services.Common.GlobalConstants;
 namespace BookRepository.Api.Features.Books.Services
@@ -63,6 +64,18 @@ namespace BookRepository.Api.Features.Books.Services
 
             return string.Format(SuccessfulCreationMessage, bookToDelete.Title);
 
+        }
+
+        public async Task<BookModel?> GetBookData(int bookId)
+        {
+            var authorEntity = await booksDataService.GetByIdWithAuthors(bookId);
+
+            if (authorEntity is null)
+            {
+                return null;
+            }
+
+            return authorEntity.Map<BookModel>();
         }
     }
 }

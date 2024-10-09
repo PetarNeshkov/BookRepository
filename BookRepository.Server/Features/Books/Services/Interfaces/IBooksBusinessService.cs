@@ -7,6 +7,8 @@ namespace BookRepository.Api.Features.Books.Services.Interfaces
     {
         Task<BookResponseModel> GetCurrentBooks(BookFilterRequestModel model);
 
+        Task<BookModel?> GetBookData(int bookId);
+
         Task<string> CreateNewBook(CreateBookRequestModel model);
 
         Task<string> DeleteBook(int id);

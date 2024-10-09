@@ -9,6 +9,8 @@ namespace BookRepository.Api.Features.Books.Services.Interfaces
     {
         Task<bool> IsExistingByTitle(string title);
 
+        Task<Book?> GetByIdWithAuthors(int bookId);
+
         Task<IEnumerable<TServiceModel>> GetAllAuthorsByPage<TServiceModel>(BookFilterRequestModel filterRequestModel);
     }
 }

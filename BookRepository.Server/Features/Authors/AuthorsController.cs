@@ -5,6 +5,7 @@ using BookRepository.Api.Infrastructure.Extensions;
 using BookRepository.Services.Common.Enumerations;
 using FluentValidation.TestHelper;
 using Microsoft.AspNetCore.Mvc;
+
 using static BookRepository.Services.Common.GlobalConstants.ErrorMessages.Authors;
 using static Microsoft.AspNetCore.Http.StatusCodes;
 
@@ -61,7 +62,7 @@ namespace BookRepository.Api.Features.Authors
                 .ToOkResult();
 
         [HttpGet]
-        public async Task<IActionResult> GetAuthorsData(int authorId)
+        public async Task<IActionResult> GetAuthorData(int authorId)
         {
             var authorData = await authorsBusinessService
                 .GetAuthorData(authorId);
